@@ -10,7 +10,7 @@ import Notifications from './components/Notifications'
 const useStyles = makeStyles((theme) => ({
     appBar: {
         borderRadius: 15,
-        margin: '30px 100px',
+        margin: '10px 100px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -48,7 +48,7 @@ function App() {
                 className={classes.appBar}
                 position="static" color="inherit"
             >
-                <Typography className={classes.header} variant="h2" align="center" >CHAT ME </Typography>
+                <Typography className={classes.header} variant="h4" align="center"  >CHEEZ_CHAT 🤟🏻</Typography>
             </AppBar>
             <VideoPlayer />
             <Options >

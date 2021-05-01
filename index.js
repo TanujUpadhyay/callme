@@ -2,10 +2,10 @@ const app = require("express")();
 const server = require("http").createServer(app)
 const cors = require("cors");
 
-const io = require("socket.io")(server,{
-    cors:{
-        origin:"*",
-        methods:["GET","POST"]
+const io = require("socket.io")(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
     }
 })
 
@@ -15,27 +15,27 @@ app.use(cors());
 const PORT = process.env.PORT || 8090;
 
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.send("Server is running.");
 })
 
 
 
-io.on("connection",(socket)=>{
-    socket.emit("me",socket.id);
+io.on("connection", (socket) => {
+    socket.emit("me", socket.id);
 
-    socket.on("disconnect",()=>{
+    socket.on("disconnect", () => {
         socket.broadcast.emit("callended")
     })
 
-    socket.on("calluser",({userTocall,signalData,from,name})=>{
-        io.to(userTocall).emit("calluser",{signal:signalData,from,name})
+    socket.on("calluser", ({ userTocall, signalData, from, name }) => {
+        io.to(userTocall).emit("calluser", { signal: signalData, from, name })
     })
 
-    socket.on("answercall",(data)=>{
-        io.to(data.to).emit("callaccepted",data.signal)
+    socket.on("answercall", (data) => {
+        io.to(data.to).emit("callaccepted", data.signal)
     })
 })
 
 
-server.listen(PORT,()=> console.log(`SERVER IS RUNNING ON PORT ${PORT}`))
+server.listen(PORT, () => console.log(`SERVER IS RUNNING ON PORT ${PORT}`))

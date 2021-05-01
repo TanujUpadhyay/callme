@@ -28,7 +28,7 @@ const ContextProvider = ({ children }) => {
             })
 
         socket.on("me", (id) => {
-            setImmediate(id);
+            setMe(id);
         })
 
         socket.on("calluser", ({ from, name: callerName, signal }) => {
@@ -38,7 +38,7 @@ const ContextProvider = ({ children }) => {
 
     const answerCall = () => {
         setCallAccepted(true)
-
+        console.log("i m here ")
         const peer = new Peer({ initiator: false, trickle: false, stream });
 
         peer.on("signal", (data) => {

@@ -5,9 +5,9 @@ body {
       rgba(0, 0, 0, 0.3), 
       rgba(0, 0, 0, 0.3)
     ),
-    url(https://i.pinimg.com/originals/8f/14/57/8f14578ef69a4c53352955d1e072eda6.png);
+    url(https://images.pexels.com/photos/1257860/pexels-photo-1257860.jpeg?auto=compress&cs=tinysrgb&h=750&w=12600);
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-size: cover;
     font-family: 'Open Sans', sans-serif;
 }
@@ -15,40 +15,5 @@ body {
 * {
     margin: 0;
     padding: 0;
-}
-
-
-
-/*
-	Theme Color Code: #0f748f;
-*/
-
-:root{
-  --theamColor:#333;
-  --textColor:white;
-}
-
-
-ul, ol{
-	padding: 0px;
-	margin: 0px;
-	list-style-type: none;
-}
-
-a, input, textarea, select, button{
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
-	outline: none;
-}
-
-a:hover{
-	text-decoration: none
-}
-
-.paddingTB100{
-	padding: 100px 0;
 }
 

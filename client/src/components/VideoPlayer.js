@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: '10px',
         border: '2px solid black',
+        backgroundColor: "#333",
+        color: "white",
         margin: '10px',
     },
 }));
@@ -32,12 +34,8 @@ function VideoPlayer() {
         userVideo,
         stream,
         name,
-        setName,
         callEnded,
-        me,
-        callUser,
-        leaveCall,
-        answerCall, } = useContext(SocketContext)
+    } = useContext(SocketContext)
     const classes = useStyles();
 
 
@@ -46,18 +44,7 @@ function VideoPlayer() {
             container
             className={classes.gridContainer}
         >
-            {/* our own video */}
-            {
-                stream && (
 
-                    <Paper className={classes.paper}>
-                        <Grid item xs={12} md={6} >
-                            <Typography variant="h5" gutterBottom>{name || "Guest"}</Typography>
-                            <video playsInline muted autoPlay ref={myVideo} className={classes.video} />
-                        </Grid>
-                    </Paper>
-                )
-            }
 
             {/* other user  video */}
             {
@@ -66,13 +53,27 @@ function VideoPlayer() {
 
                     <Paper className={classes.paper}>
                         <Grid item xs={12} md={6} >
-                            <Typography variant="h5" gutterBottom>{call || "Guest"}</Typography>
+                            <Typography variant="h5" gutterBottom>{(call && call.name) || "Guest"}</Typography>
                             <video playsInline autoPlay ref={userVideo} className={classes.video} />
                         </Grid>
                     </Paper>
 
                 )
             }
+            {/* our own video */}
+            {
+                stream && (
+
+                    <Paper className={classes.paper}>
+                        <Grid item xs={12} md={6} >
+                            <Typography variant="h5" gutterBottom>{name || "Guest"}</Typography>
+                            <video playsInline muted autoPlay ref={callAccepted && !callEnded ? userVideo : myVideo} className={classes.video} />
+                        </Grid>
+                    </Paper>
+                )
+            }
+
+
 
         </Grid>
     )

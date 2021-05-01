@@ -33,23 +33,30 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: '10px 20px',
         border: '2px solid black',
+        backgroundColor: "#333",
+        color: "white",
     },
+    textarea: {
+        "input-label": {
+            "&::placeholder": {
+                color: "white"
+            },
+            color: "white", // if you also want to change the color of the input, this is the prop you'd use
+        }
+    }
 }));
 
 function Options({ children }) {
 
-    const { call,
+    const {
         callAccepted,
-        myVideo,
-        userVideo,
-        stream,
         name,
         setName,
         callEnded,
         me,
         callUser,
         leaveCall,
-        answerCall, } = useContext(SocketContext)
+    } = useContext(SocketContext)
 
     const classes = useStyles();
 
@@ -62,7 +69,9 @@ function Options({ children }) {
                     <Grid container className={classes.gridContainer}>
                         <Grid item xs={12} md={6} className={classes.padding} >
                             <Typography gutterBottom variant="h6" >Account Info</Typography>
-                            <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
+                            <TextField InputProps={{ style: { color: "#fff" } }} InputLabelProps={{
+                                style: { color: '#fff' }
+                            }} label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
                             <CopyToClipboard text={me} className={classes.margin} >
                                 <Button variant="contained" color="primary" fullWidth startIcon={<Assessment fontSize="large" />}>
                                     Copy Your Id
@@ -71,23 +80,25 @@ function Options({ children }) {
                         </Grid>
                         <Grid item xs={12} md={6} className={classes.padding} >
                             <Typography gutterBottom variant="h6" >Make a call</Typography>
-                            <TextField label="ID" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth />
+                            <TextField
+                                InputProps={{ style: { color: "#fff" } }} InputLabelProps={{
+                                    style: { color: '#fff' }
+                                }} label="ID" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth />
                             {
                                 callAccepted && !callEnded ? (
-                                    <Button variant="contained" color="secondary" fullWidth startIcon={<PhoneDisabled fontSize="large"
+                                    <Button variant="contained" color="secondary" fullWidth startIcon={<PhoneDisabled fontSize="large" />}
                                         className={classes.margin}
                                         onClick={leaveCall}
-                                    />}>
+                                    >
                                         Hang up
                                     </Button>
                                 ) : (
-                                    <Button variant="contained" color="primary" fullWidth startIcon={<Phone fontSize="large"
+                                    <Button variant="contained" color="primary" fullWidth startIcon={<Phone fontSize="large" />}
                                         className={classes.margin}
                                         onClick={() => {
                                             callUser(idToCall)
                                         }}
-
-                                    />}>
+                                    >
                                         Call
                                     </Button>
                                 )
